@@ -1,12 +1,12 @@
 body {
     background-color: black;
-    display: flex;
-    height: 200vh;
-    justify-content: center;
     margin: 0;
+    position: relative;
+    min-height: 200vh;
 }
 
 main {
+    margin-top: 150px;
     display: flex;
     align-items: center;
     justify-content: center;
