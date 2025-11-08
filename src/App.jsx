@@ -95,7 +95,13 @@ export default function App() {
                                 onChange={(e) => setInputValue(e.target.value)}
                             />
                             <span style={{ fontSize: '12px' }}>The lower the number, the more difficult it will be.</span>
-                            <button className='btn-start' onClick={() => setWithBoard(parseInt(inputValue, 10))} > Start</button>
+                            <button
+                                className='btn-start'
+                                onClick={() => setWithBoard(parseInt(inputValue, 10))}
+                                disabled={!inputValue || parseInt(inputValue, 10) === 0 || parseInt(inputValue, 10) < 0}
+                            >
+                                Start
+                            </button>
                         </div>
                         :
                         <>
@@ -108,10 +114,8 @@ export default function App() {
                                             return <Line
                                                 key={index}
                                                 letters={isCurrentRow ? keysWords : chars ?? ''}
-                                                isFinal={!isCurrentRow && chars != null}
                                                 solution={solution}
                                                 index={index}
-                                                widthBoard={widthBoard}
                                             />
                                         })
                                     }
@@ -142,7 +146,7 @@ export default function App() {
     )
 }
 
-function Line({ letters = [], isFinal, solution, widthBoard }) {
+function Line({ letters = [], solution }) {
     const tiles = []
     for (let i = 0; i < BOARD_WIDTH; i++) {
         const char = letters[i]

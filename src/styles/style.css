@@ -169,3 +169,14 @@ main {
     transform: translateY(0);
     box-shadow: 0 0 6px #00eaff;
 }
+
+.btn-start:disabled {
+    background: linear-gradient(135deg, #555 0%, #333 100%);
+    color: #ccc;
+    cursor: not-allowed;
+    opacity: 0.7;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.5);
+    transform: none;
+    transition: all 0.3s ease;
+}
