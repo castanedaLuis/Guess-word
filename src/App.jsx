@@ -5,21 +5,33 @@ import { useEffect, useState } from 'react';
 const BOARD_WIDTH = 5
 const DATA_RANDOM = ['Hello', 'House', 'SOTAY', 'Jikqa', 'Codin', 'LIQUA']
 
-function generatedWords(larger) {
-    const letters = 'abcdefghijklmnopqrstuvwxyzñ';
-    let words = [];
-    let result = ''
-    for (let y = 0; y < 10; y++) {
-        result = ''
-        for (let i = 0; i < larger; i++) {
-            const randomIndex = Math.floor(Math.random() * letters.length);
-            result += letters[randomIndex];
-        }
-        words.push(result)
+function generateProgrammingWords(larger) {
+    const programmingWords = [
+        "react", "hooks", "array", "class", "const", "await", "async",
+        "while", "break", "catch", "throw", "debug", "input", "fetch",
+        "parse", "print", "bytes", "token", "query", "props", "scope",
+        "regex", "event", "field", "types", "stack", "union", "index",
+        "cache", "model", "table", "build", "style", "route", "nodes",
+        "proxy", "error", "shell", "linux", "patch", "state", "login",
+        "admin", "delta", "shift", "theme", "flush", "tools", "merge",
+        "tests", "coder", "logic", "value", "entry", "focus", "trace",
+        "https", "proxy", "token", "local", "inner", "outer", "macro"
+    ];
+
+    // Filtrar por tamaño si lo deseas
+    const filtered = programmingWords.filter(word => word.length <= larger);
+
+    // Generar 10 palabras aleatorias
+    const words = [];
+    for (let i = 0; i < 10; i++) {
+        const randomIndex = Math.floor(Math.random() * filtered.length);
+        words.push(filtered[randomIndex]);
     }
-    return words
+
+    return words;
 }
-const solution = generatedWords(5)[Math.floor(Math.random() * 10)];
+
+const solution = generateProgrammingWords(5)[Math.floor(Math.random() * 10)];
 
 export default function App() {
     console.warn(solution);
