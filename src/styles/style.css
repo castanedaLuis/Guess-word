@@ -180,3 +180,48 @@ main {
     transform: none;
     transition: all 0.3s ease;
 }
+
+.result-container {
+    text-align: center;
+    background-color: #1e1e1e;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    color: #fff;
+    width: 250px;
+    margin: 50px auto;
+}
+
+.result-text {
+    font-size: 24px;
+    margin-bottom: 20px;
+    font-weight: bold;
+}
+
+.winner {
+    color: #2ecc71;
+}
+
+.loser {
+    color: #e74c3c;
+}
+
+.retry-button {
+    background-color: #3498db;
+    border: none;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background 0.3s ease, transform 0.2s ease;
+}
+
+.retry-button:hover {
+    background-color: #2980b9;
+    transform: scale(1.05);
+}
+
+.retry-button:active {
+    transform: scale(0.97);
+}

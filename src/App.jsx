@@ -81,6 +81,11 @@ export default function App() {
         setHeightBoard(Array(widthBoard).fill(null))
     }, [widthBoard])
 
+    const isFinishedGame = heightBoard.filter(value => value === null).length === 0
+    console.log({ isFinishedGame });
+    console.log(heightBoard);
+
+
     return (
         <>
             <main>
@@ -125,6 +130,9 @@ export default function App() {
                                         <span style={{ color: 'red' }}>Press Enter.</span>
                                         : <span style={{ color: 'green' }}>Press any key.</span>
                                 }
+                                {isFinishedGame ?
+                                    <ResultMessage isWinner={isFinishedGame} onRetry={handleRestart} />
+                                    : null}
                             </div>
                             <div className='container-result'>
                                 <button onClick={handleRestart} className='btn-restart'>Reiniciar</button>
@@ -170,4 +178,17 @@ function Line({ letters = [], solution }) {
     return (
         <div className='line'>{tiles}</div>
     )
+}
+
+function ResultMessage({ isWinner, onRetry }) {
+    return (
+        <div className="result-container">
+            <h2 className={`result-text ${isWinner ? "winner" : "loser"}`}>
+                {isWinner ? "🎉 Winner!" : "💀 Loser!"}
+            </h2>
+            <button className="retry-button" onClick={onRetry}>
+                🔁 Retry
+            </button>
+        </div>
+    );
 }
