@@ -105,7 +105,7 @@ export default function App() {
                         </div>
                         :
                         <>
-                            <div>
+                            <div style={{ minHeight: '300px' }}>
                                 <h1 className='title'>Guess the Word 🎩</h1>
                                 <section className='game'>
                                     {
@@ -120,6 +120,11 @@ export default function App() {
                                         })
                                     }
                                 </section>
+                                {
+                                    keysWords.length === 5 ?
+                                        <span style={{ color: 'red' }}>Press Enter.</span>
+                                        : <span style={{ color: 'green' }}>Press any key.</span>
+                                }
                             </div>
                             <div className='container-result'>
                                 <button onClick={handleRestart} className='btn-restart'>Reiniciar</button>
@@ -130,9 +135,11 @@ export default function App() {
                                             const exitsLetter = heightBoard.filter(item => item != null).flat().includes(letter)
                                             const isVissible = keysWords.includes(letter) || exitsLetter
                                             return (
-                                                <div key={index} className={`tile-solution`}>
-                                                    <span style={{ opacity: isVissible ? 1 : 0 }}> {letter}</span>
-                                                </div>
+                                                <>
+                                                    <div key={index} className={`tile-solution`}>
+                                                        <span style={{ opacity: isVissible ? 1 : 0 }}> {letter}</span>
+                                                    </div>
+                                                </>
                                             )
                                         })
                                     }
