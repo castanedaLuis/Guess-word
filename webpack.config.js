@@ -26,7 +26,7 @@ export default {
     resolve: {
         extensions: [".js", ".jsx"], // 👈 permite importar sin escribir extensión
     },
-    plugins: [new HtmlWebpackPlugin({ template: "./public/index.html" })],
+    plugins: [new HtmlWebpackPlugin({ template: "./index.html" })],
     devServer: {
         static: "./dist",
         open: true,
