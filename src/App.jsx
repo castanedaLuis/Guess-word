@@ -88,7 +88,6 @@ export default function App() {
 
     }, [solution, heightBoard])
 
-    console.log({ isFinishedGame });
 
     const winnerOrLoser = solution
         .split('') // separa cada letra
