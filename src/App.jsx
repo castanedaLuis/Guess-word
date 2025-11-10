@@ -1,6 +1,6 @@
 import './styles/style.css'
 import Footer from './components/Footer';
-import { useEffect, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 
 const BOARD_WIDTH = 5
 const DATA_RANDOM = ['Hello', 'House', 'SOTAY', 'Jikqa', 'Codin', 'LIQUA']
@@ -31,7 +31,7 @@ function generateProgrammingWords(larger) {
     return words;
 }
 
-const solution = generateProgrammingWords(5)[Math.floor(Math.random() * 10)];
+let solution = generateProgrammingWords(5)[Math.floor(Math.random() * 10)];
 
 export default function App() {
     console.warn(solution);
@@ -40,6 +40,7 @@ export default function App() {
     const [gameOver, setGameOver] = useState(false)
     const [heightBoard, setHeightBoard] = useState(Array(widthBoard).fill(null))
     const [inputValue, setInputValue] = useState("");
+    const [isFinishedGame, setIsFinishedGame] = useState(false)
 
     const handleEventKeyPress = (event) => {
         const key = event.key;
@@ -81,10 +82,22 @@ export default function App() {
         setHeightBoard(Array(widthBoard).fill(null))
     }, [widthBoard])
 
-    const isFinishedGame = heightBoard.filter(value => value === null).length === 0
-    console.log({ isFinishedGame });
-    console.log(heightBoard);
+    useMemo(() => {
+        const isFinishedGame = heightBoard.every(value => value !== null)
+        setIsFinishedGame(isFinishedGame)
 
+    }, [solution, heightBoard])
+
+    console.log({ isFinishedGame });
+
+    const winnerOrLoser = solution
+        .split('') // separa cada letra
+        .every(letter =>
+            heightBoard
+                .filter(item => item != null) // ignora celdas vacías
+                .flat() // aplana si hay subarreglos
+                .includes(letter) // verifica si contiene la letra
+        );
 
     return (
         <>
@@ -132,7 +145,7 @@ export default function App() {
                                         : <span style={{ color: 'green' }}>Press any key.</span>
                                 }
                                 {isFinishedGame ?
-                                    <ResultMessage isWinner={isFinishedGame} onRetry={handleRestart} />
+                                    <ResultMessage isWinner={winnerOrLoser} onRetry={handleRestart} />
                                     : null}
                             </div>
                             <div className='container-result'>
