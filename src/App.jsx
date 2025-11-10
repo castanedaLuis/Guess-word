@@ -121,6 +121,7 @@ export default function App() {
                                                 letters={isCurrentRow ? keysWords : chars ?? ''}
                                                 solution={solution}
                                                 index={index}
+                                                isCurrentRow={isCurrentRow}
                                             />
                                         })
                                     }
@@ -161,7 +162,7 @@ export default function App() {
     )
 }
 
-function Line({ letters = [], solution }) {
+function Line({ letters = [], solution, isCurrentRow }) {
     const tiles = []
     for (let i = 0; i < BOARD_WIDTH; i++) {
         const char = letters[i]
@@ -176,7 +177,7 @@ function Line({ letters = [], solution }) {
         tiles.push(<div key={i} className={`tile ${className}`}>{char}</div>)
     }
     return (
-        <div className='line'>{tiles}</div>
+        <div className={`line ${isCurrentRow ? 'isCurrentRow' : ''}`}>{tiles}</div>
     )
 }
 

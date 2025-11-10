@@ -23,11 +23,18 @@ main {
     display: flex;
     flex-direction: column;
     gap: 2px;
+    width: 250px;
 }
 
 .line {
     display: flex;
     gap: 2px;
+}
+
+.line.isCurrentRow {
+    border: 1px solid #00c4cc;
+    padding: 2px;
+    border-radius: 6px;
 }
 
 .tile {
@@ -224,4 +231,22 @@ main {
 
 .retry-button:active {
     transform: scale(0.97);
+}
+
+@media screen and (max-width: 600px) {
+    main {
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        margin-top: 20px;
+    }
+
+    .game {
+        justify-content: center;
+        align-items: center;
+    }
+
+    .container-result {
+        flex-direction: column;
+    }
 }
